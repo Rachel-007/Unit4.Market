@@ -1,10 +1,8 @@
--- TODO
-DROP TABLE IF EXISTS orders_products;
-DROP TABLE IF EXISTS orders cascade;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
+DROP TABLE IF EXISTS orders_products CASCADE;
 DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS users cascade;
 -- This file defines the schema for the database.
-
 
 
 CREATE TABLE users (
