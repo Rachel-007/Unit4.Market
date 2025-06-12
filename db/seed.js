@@ -7,12 +7,16 @@ console.log("🌱 Database seeded.");
 
 import { createUser } from "#db/queries/users";
 import { createOrder } from "#db/queries/orders";
-import { createProduct } from "#db/queries/products";
+import { createProducts } from "#db/queries/products";
 
 async function seed() {
-  await createUser({ username: "testuser", password: "password" });
-  await createOrder({ userId: 1, date: new Date(), note: "First order" });
-  await createProduct({
+  const user = await createUser({ username: "testuser", password: "password" });
+  const order = await createOrder({
+    userId: 1,
+    date: new Date(),
+    note: "First order",
+  });
+  const product = await createProducts({
     title: "Test Product",
     description: "This is a test product",
     price: 9.99,
