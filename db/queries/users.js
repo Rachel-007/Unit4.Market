@@ -2,9 +2,12 @@ import db from "#db/client";
 import bcrypt from "bcrypt";
 // import faker from "faker";
 
-export async function createUser(username, password) {
+export async function createUser({ username, password }) {
+  console.log(username, password);
   const sql = `INSERT INTO users(username, password) VALUES($1, $2) RETURNING *`;
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const saltrounds = 10;
+  const salt = await bcrypt.genSalt(saltrounds);
+  const hashedPassword = await bcrypt.hash(password, salt);
   const {
     rows: [user],
   } = await db.query(sql, [username, hashedPassword]);

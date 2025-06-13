@@ -2,12 +2,12 @@ import db from "#db/client";
 import bcrypt from "bcrypt";
 // import faker from "faker";
 
-export async function createProducts(userId, productId, quantity) {
-  const sql = `INSERT INTO orders(user_id, product_id, quantity) VALUES($1, $2, $3) RETURNING *`;
+export async function createProducts({ title, description, price }) {
+  const sql = `INSERT INTO products(title, description, price) VALUES($1, $2, $3) RETURNING *`;
   const {
-    rows: [order],
-  } = await db.query(sql, [userId, productId, quantity]);
-  return order;
+    rows: [product],
+  } = await db.query(sql, [title, description, price]);
+  return product;
 }
 
 export async function getProductById(id) {
